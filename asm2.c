@@ -184,7 +184,7 @@ void chucNang2()
                 uocLonNhat = uocChungLonNhat(so1, so2);
                 boiNhoNhat = boiChungNhoNhat(so1, so2, uocLonNhat);
                 printf("Ước chung lớn nhất của 2 số %.1f và %.1f là %d\n",so1, so2, uocLonNhat);
-                printf("Bội chung nhỏ nhất của 2 %.1f và %.1f là %d",so1, so2, boiNhoNhat);
+                printf("Bội chung nhỏ nhất của 2 %.1f và %.1f là %d\n",so1, so2, boiNhoNhat);
             }
             thoat = dungNhieuLan();
             if (thoat == -1)
@@ -288,7 +288,7 @@ float tinhTienKaraoke()
 		if(gioKetThuc - gioBatDau <= 3)
 		{
 			tienGio = (gioKetThuc - gioBatDau)* 150000;
-			tienGiamGia  = 10/100* tienGio;
+			tienGiamGia  = 0.1* tienGio;
 			tienThanhToan = tienGio - tienGiamGia;
 		
 			
@@ -296,7 +296,7 @@ float tinhTienKaraoke()
 		else
 		{
 			tienGio =  (gioKetThuc - gioBatDau ) * 150000;
-			tienGiamGia = (gioKetThuc - gioBatDau ) * 150000 * 30/100 + 10/100* tienGio;
+			tienGiamGia = (gioKetThuc - gioBatDau ) * 150000 * 0.3 + 0.1* tienGio;
 			tienThanhToan = (gioKetThuc - gioBatDau)* 150000 - tienGiamGia;
 		}
 	}
@@ -311,7 +311,7 @@ float tinhTienKaraoke()
 			else
 			{
 				tienGio =  (gioKetThuc - gioBatDau ) * 150000;
-				tienGiamGia = (gioKetThuc - gioBatDau ) * 150000 * 30/100;
+				tienGiamGia = (gioKetThuc - gioBatDau ) * 150000 * 0.3;
 				tienThanhToan = (gioKetThuc - gioBatDau)* 150000 - tienGiamGia;
 				
 }
@@ -326,6 +326,8 @@ void tinhLaiVayNganHang()
     int phuongThuc, quayLai = 1;
     do
     {
+        printf("Phương thức 1: Dư nợ giảm dần\n");
+        printf("Phương thức 2: Trả góp đều\n");
     printf("Bạn hãy lựa chọn phương thức: ");
     scanf("%d", &phuongThuc);    
     
@@ -333,16 +335,22 @@ void tinhLaiVayNganHang()
     {
     case 1:
     {
-        printf("PHương thức dư nợ giảm dần:");
+        printf("PHương thức trả góp đều hàng tháng:\n");
         const float laiSuat = 0.05;
-        const int soThang = 12;
+        int soThang ;
         double soTienVay;
         do
         {
             printf("Nhập số tiền bạn muốn vay: ");
             scanf("%lf", &soTienVay);
         }while (soTienVay < 0 );
-    
+        
+        do
+        {
+           printf("Nhập số tháng bạn muốn thanh toán: ");
+           scanf("%d", &soThang);
+        } while (soThang <= 0);
+        
         double goc,lai, soTienPhaiTraHangThang;
       
         goc = soTienVay / soThang;
@@ -352,14 +360,14 @@ void tinhLaiVayNganHang()
             lai = soTienVay * laiSuat;
             soTienPhaiTraHangThang = goc + lai;
             soTienVay = soTienVay - goc;
-            printf("Số tiền bạn phải thanh toán vào tháng thứ %d : %.0lf\n", i+1, soTienPhaiTraHangThang);
+            printf("Số tiền bạn phải thanh toán vào tháng thứ %d : %.0f\n", i+1, soTienPhaiTraHangThang);
         }
             break;
     }
     case 2:
     {
         
-            printf("Phương thức trả góp đều hàng tháng: \n");
+            printf("Phương thức dư nợ giảm dần: \n");
             const float laiSuat1 = 0.05;
             int soThang1 ;
             double soTienVay1;
@@ -375,10 +383,12 @@ void tinhLaiVayNganHang()
         } while (soThang1 < 1 );
         
         double  soTienPhaiTraHangThang1, bieuThuc;
-        bieuThuc = (laiSuat1 * pow(1+laiSuat1, 2)) / (pow(1 + laiSuat1, 2) - 1);
+        for(int i = 0; i < soThang1; i++)
+        {
+        bieuThuc = (laiSuat1 * pow(1+laiSuat1, soThang1)) / (pow(1 + laiSuat1, soThang1) - 1);
         soTienPhaiTraHangThang1 = soTienVay1 * bieuThuc; 
-        printf("Số tiền bạn phải thanh toán hàng tháng là : %.0lf\n", soTienPhaiTraHangThang1);
-
+        printf("Số tiền bạn phải thanh toán hàng tháng là : %.0f\n", soTienPhaiTraHangThang1);
+        }
     }   
         
     default:
@@ -386,7 +396,9 @@ void tinhLaiVayNganHang()
         break;
     }
     printf("Bạn hãy chọn lại phương thức\n");
-    printf("\nNhap 1 de chọn phương thức khác , 0 de thoat: ");
+    
+    printf("\nNhap 1 de chọn phương thức khác , 0 de thoat: \n");
+   
     scanf("%d", &quayLai);
     } while (phuongThuc < 1 || phuongThuc > 3 || quayLai == 1);
 }
@@ -430,6 +442,7 @@ int main()
             break;
 
         case 3 : 
+        {   
             printf("Bạn đã chọn chương trình số 3 : Tính tiền cho quán Karaoke\n ");
             int thoat3 = 0;
             do
@@ -445,7 +458,7 @@ int main()
             
             
             break;
-
+        }
         case 4 : 
             printf("Bạn đã chọn chương trình số 4 : Tính tiền điện\n");
             int thoat4 = 0;
@@ -468,8 +481,6 @@ int main()
             {
                 
                 printf("Bạn hãy chọn phương pháp trả khoản vay: \n");
-                printf("Phương thức 1: Dư nợ giảm dần\n");
-                printf("Phương thức 2: Trả góp đều\n");
                 tinhLaiVayNganHang();      
             } 
             break;
