@@ -162,20 +162,18 @@ void chucNang2()
             scanf ("%f",&so2);
             if(floor(so1)!=so1 || floor(so2)!=so2)
             {
-                printf("Không thể tìm được ước chung lớn nhất của 2 số thục");
+                printf("Không thể tìm được ước chung lớn nhất của 2 số thục\n");
+                printf("Không thể tìm được bội số chung nhỏ nhất của 2 số thực\n");
             }
             else if(so1 == 0 || so2 == 0)
             {
-                uocLonNhat = uocChungLonNhat((int) so1, (int) so2);
-                printf("Ước chung lớn nhất của 2 số %.1f và %.1f là %d\n",so1, so2, uocLonNhat) ;}
+                printf("Không thể có ước chung lớn nhất khi 1 trong 2 số = 0\n");
+                printf("Không thể có bội số chung nhỏ nhất khi 1 trong 2 số = 0\n");
+            }
             else if(so1 <0 || so2 < 0)
             {
-                triSo1 = abs(so1);
-                triSo2 = abs(so2);
-                uocLonNhat = uocChungLonNhat(triSo1, triSo2);
-                boiNhoNhat = boiChungNhoNhat( triSo1, triSo2, uocLonNhat);
-                printf("Ước chung lớn nhất của 2 số %.1f và %.1f là %d\n",so1, so2, uocLonNhat);
-                printf("Bội chung nhỏ nhất của 2 %.1f và %.1f là %d\n",so1, so2, boiNhoNhat); 
+                printf("Ước chung lớn nhất chỉ áp dụng với 2 số nguyên dương\n");
+                printf("Bội số chung nhỏ nhất chỉ áp dụng với 2 số nguyên dương\n");
             }else if(so1 > 0 && so2 >0) {
                 
                 uocLonNhat = uocChungLonNhat(so1, so2);
@@ -518,7 +516,7 @@ int main()
         printf("Chương trình 4 : Tính tiền điện\n"); // xong
         printf("Chương trình 5 : Đổi tiền\n"); //  xong
         printf("Chương trình 6 : Tính lãi vay ngân hàng, vay trả góp\n"); // xong
-        printf("Chương trình 7 : Vay tiền mua xe\n");
+        printf("Chương trình 7 : Vay tiền mua xe\n"); // xong
         printf("Chương trình 8 : Sắp xếp thông tin sinh viên\n");
         printf("Chương trình 9 : Game FPOLY_LOTT\n");
         printf("Chương trình 10: Tính toán phân số\n");
