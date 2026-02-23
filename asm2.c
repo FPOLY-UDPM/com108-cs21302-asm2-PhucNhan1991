@@ -302,75 +302,95 @@ void tinhLaiVayNganHang()
     {
         printf("Phương thức 1: Dư nợ giảm dần\n");
         printf("Phương thức 2: Trả góp đều\n");
-    printf("Bạn hãy lựa chọn phương thức: ");
-    scanf("%d", &phuongThuc);    
+        printf("Bạn hãy lựa chọn phương thức: ");
+        scanf("%d", &phuongThuc);    
     
     switch (phuongThuc)
     {
-    case 1:
-    {
-        printf("PHương thức trả góp đều hàng tháng:\n");
-        const float laiSuat = 0.05;
-        int soThang ;
-        double soTienVay;
-        do
+        case 1:
         {
-            printf("Nhập số tiền bạn muốn vay: ");
-            scanf("%lf", &soTienVay);
-        }while (soTienVay < 0 );
+            printf("Phương thức trả góp đều hàng tháng:\n");
+            const float laiSuat = 0.05;
+            int soThang ;
+            double soTienVay;
+            do
+            {
+                printf("Nhập số tiền bạn muốn vay: ");
+                scanf("%lf", &soTienVay);
+            }while (soTienVay < 0 );
         
-        do
-        {
-           printf("Nhập số tháng bạn muốn thanh toán: ");
-           scanf("%d", &soThang);
-        } while (soThang <= 0);
+            do
+            {
+                printf("Nhập số tháng bạn muốn thanh toán: ");
+                scanf("%d", &soThang);
+            } while (soThang <= 0);
         
-        double goc,lai, soTienPhaiTraHangThang;
+            double goc,lai, soTienPhaiTraHangThang;
       
-        goc = soTienVay / soThang;
-
-        for( int i = 0; i < soThang; i++)
-        {
-            lai = soTienVay * laiSuat;
-            soTienPhaiTraHangThang = goc + lai;
-            soTienVay = soTienVay - goc;
-            printf("Số tiền bạn phải thanh toán vào tháng thứ %d : %.0f\n", i+1, soTienPhaiTraHangThang);
+            goc = soTienVay / soThang;
+            printf("\n===== THONG TIN KHOAN VAY =====\n");
+            printf("Tien vay duoc duyet: %.0lf VND\n", soTienVay);
+            printf("So thang vay: %d\n", soThang);
+           
+            printf("------------------------------------------------------------------------------------------\n");
+            printf("%-6s | %-15s | %-12s | %-12s | %-15s | %-15s\n","Thang", "Du no dau ky", "Tien goc", "Tien lai", "Tong phai tra", "Du no cuoi ky");
+            printf("------------------------------------------------------------------------------------------\n");
+            for( int i = 0; i < soThang; i++)
+            {
+                double duNoDauKy = soTienVay;
+                lai = soTienVay * laiSuat;
+                soTienPhaiTraHangThang = goc + lai;
+                soTienVay = soTienVay - goc;
+                printf("%-6d | %-15.0f | %-12.0f | %-12.0f | %-15.0f | %-15.0f\n",i+1, duNoDauKy, goc, lai, soTienPhaiTraHangThang, soTienVay);
+            }
+            printf("------------------------------------------------------------------------------------------\n");
+        break;
         }
-            break;
-    }
-    case 2:
-    {
+        case 2:
+        {
         
             printf("Phương thức dư nợ giảm dần: \n");
             const float laiSuat1 = 0.05;
             int soThang1 ;
             double soTienVay1;
-        do
-        {
-            printf("Nhập số tiền bạn muốn vay: ");
-            scanf("%lf", &soTienVay1);
-        }while (soTienVay1 < 0 );
-        do
-        {
-            printf("Nhập số tháng bạn muốn vay: ");
-            scanf("%d", &soThang1);
-        } while (soThang1 < 1 );
+            do
+            {
+                printf("Nhập số tiền bạn muốn vay: ");
+                scanf("%lf", &soTienVay1);
+            }while (soTienVay1 < 0 );
+            do
+            {
+                printf("Nhập số tháng bạn muốn vay: ");
+                scanf("%d", &soThang1);
+            } while (soThang1 < 1 );
         
-        double  soTienPhaiTraHangThang1, bieuThuc;
-        for(int i = 0; i < soThang1; i++)
-        {
-        bieuThuc = (laiSuat1 * pow(1+laiSuat1, soThang1)) / (pow(1 + laiSuat1, soThang1) - 1);
-        soTienPhaiTraHangThang1 = soTienVay1 * bieuThuc; 
-        printf("Số tiền bạn phải thanh toán hàng tháng là : %.0f\n", soTienPhaiTraHangThang1);
-        }
-    }   
+            double  soTienPhaiTraHangThang1, bieuThuc;
+            printf("\n===== THONG TIN KHOAN VAY =====\n");
+            printf("Tien vay duoc duyet: %.0lf VND\n", soTienVay1);
+            printf("So thang vay: %d\n", soThang1);
+
+            printf("------------------------------------------------------------------------------------------\n");
+            printf("%-6s | %-15s | %-12s | %-12s | %-15s | %-15s\n","Thang", "Du no dau ky", "Tien goc", "Tien lai", "Tong phai tra", "Du no cuoi ky");
+            printf("------------------------------------------------------------------------------------------\n");
+            bieuThuc = (laiSuat1 * pow(1+laiSuat1, soThang1)) / (pow(1 + laiSuat1, soThang1) - 1);
+            soTienPhaiTraHangThang1 = soTienVay1 * bieuThuc; 
+            for(int i = 0; i < soThang1; i++)
+            {
+                double duNoDauKy = soTienVay1;
+                double tienLai = duNoDauKy * laiSuat1;
+                double tienGoc = soTienPhaiTraHangThang1 - tienLai;
+
+                soTienVay1 -= tienGoc;
+
+                printf("%-6d | %-15.0f | %-12.0f | %-12.0f | %-15.0f | %-15.0f\n",i+1, duNoDauKy, tienGoc, tienLai,soTienPhaiTraHangThang1, soTienVay1);
+            }
+            printf("------------------------------------------------------------------------------------------\n");
+        }      
         
-    default:
-        
-        break;
+        default:
+            break;
     }
     printf("Bạn hãy chọn lại phương thức\n");
-    
     printf("\nNhap 1 de chọn phương thức khác , 0 de thoat: \n");
    
     scanf("%d", &quayLai);
@@ -395,8 +415,91 @@ void doiTien()
 		}
 }
 
+//----------------------------************----------------------------------------//
+//----------------------------************----------------------------------------//
+// Hàm xử lý chức năng số 7
 
+void vayMuaXe()
+{
+    const int MAX_PERCENT = 80;
+    const double MAX_LOAN = 500000000;
+    const float ANNUAL_RATE = 0.072;
+    int YEARS  ;
+    double giaXe;
+    double phanTramVay;
+    double tienVayMongMuon, tienVayThucTe;
+    double tienTraTruoc;
+    double laiSuatThang;
+    int soThang;
+    double gocThang;
+    double duNo;
+    double laiThang;
+    double tongTraThang;
+    double tongLai = 0;
 
+    // ===== Nhập dữ liệu =====
+    printf("Nhap gia xe (VND): ");
+    scanf("%lf", &giaXe);
+
+    do {
+        printf("Nhap phan tram vay (<= 80%%): ");
+        scanf("%lf", &phanTramVay);
+
+        if (phanTramVay <= 0 || phanTramVay > MAX_PERCENT) {
+            printf("Phan tram vay khong hop le! Nhap lai.\n");
+        }
+
+    } while (phanTramVay <= 0 || phanTramVay > MAX_PERCENT);
+
+    // ===== Tính tiền vay =====
+    tienVayMongMuon = giaXe * phanTramVay / 100.0;
+
+    if (tienVayMongMuon > MAX_LOAN) {
+        tienVayThucTe = MAX_LOAN;
+    } else {
+        tienVayThucTe = tienVayMongMuon;
+    }
+
+    tienTraTruoc = giaXe - tienVayThucTe;
+
+    printf("Nhập số năm muốn vay: ");
+    scanf("%d", &YEARS);
+
+    soThang = YEARS *12;
+    // ===== Thông tin vay =====
+    laiSuatThang = ANNUAL_RATE / 12.0;
+    gocThang = tienVayThucTe / soThang;
+    duNo = tienVayThucTe;
+
+    printf("\n===== THONG TIN KHOAN VAY =====\n");
+    printf("Tien vay duoc duyet: %.0lf VND\n", tienVayThucTe);
+    printf("Tien tra truoc: %.0lf VND\n", tienTraTruoc);
+    printf("So thang vay: %d\n", soThang);
+    printf("Lai suat thang: %.4lf %%\n\n", laiSuatThang * 100);
+
+    printf("Thang |    Goc      |    Lai      |   Tong Tra   |   Du No Con Lai\n");
+    printf("----------------------------------------------------------------------\n");
+
+    // ===== Vòng lặp tính từng tháng =====
+    for (int i = 1; i <= soThang; i++) {
+        laiThang = duNo * laiSuatThang;
+        tongTraThang = gocThang + laiThang;
+
+        tongLai += laiThang;
+
+        duNo -= gocThang;
+        if (duNo < 0) duNo = 0;
+
+        printf("%5d | %10.0lf | %10.0lf | %12.0lf | %15.0lf\n",
+               i, gocThang, laiThang, tongTraThang, duNo);
+    }
+
+    printf("\n===== TONG KET =====\n");
+    printf("Tong tien lai phai tra: %.0lf VND\n", tongLai);
+    printf("Tien vay duoc duyet: %.0lf VND\n", tienVayThucTe);
+    printf("Tong tien phai tra (ca goc + lai): %.0lf VND\n",
+           tongLai + tienVayThucTe);
+}
 int main()
 {
    
@@ -490,7 +593,19 @@ int main()
             break;
 
         case 7 : 
-        printf("Bạn đã chọn chương trình số 7 : Vay tiền mua xe");
+        printf("Bạn đã chọn chương trình số 7 : Vay tiền mua xe\n");
+        int thoat6 = 0;
+        do
+        {
+            vayMuaXe();
+            thoat6 == dungNhieuLan();
+            if(thoat6 == -1)
+            {
+                break;
+            }
+        } while (thoat6 == 0);
+        
+        
         break;
 
         case 8 : 
