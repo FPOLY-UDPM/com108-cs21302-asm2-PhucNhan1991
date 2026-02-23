@@ -22,14 +22,14 @@ void kiemTraSoNguyenTo(float soKiemTra)
     int  check=0;
     // Nhập số cần kiểm tra 
 
-    int i = 2; // Biến đếm để thực hiện kiểm tra
+    int i ; // Biến đếm để thực hiện kiểm tra
     
     if(floor(soKiemTra) == soKiemTra)
     {
         int n = (int) soKiemTra;
         if(n > 2 )
         {
-            for(;i<=sqrt(n);i++)
+            for(i = 2;i<=sqrt(n);i++)
             {
                 if( n % i ==0)
                 {
@@ -91,10 +91,7 @@ void kiemTraSoChinhPhuong(float soKiemTra)
     if (check ==1)
     {
         printf("Số %.1f là 1 số chính phương\n", soKiemTra);
-    }else  printf("Số %.1f không phải là số chính phương\n", soKiemTra);
-    
-
-    
+    }else  printf("Số %.1f không phải là số chính phương\n", soKiemTra);     
 } 
 void chucNang1()
 {
@@ -242,26 +239,13 @@ float tinhTienDien()
 //----------------------------************----------------------------------------//
 //----------------------------************----------------------------------------//
 
-// Hàm xử lý chức năng số 5
-void doiTien(int soTien)
-{
-    
-    // Khai báo mảng gồm các phần tử là các tờ tiền có mệnh giá
 
-    // Dùng số tiền / phần tử 500 trong mảng: số tờ là phần nguyên
-        // tiếp theo lấy phần dư của (sô tiền % 500) / 200  để lấy phần nguyên
-        //  Thực hiện tiếp tục với các vị trí phần tử của mảng cho đến khi số dư = 0  thì dừng
-    // Còn không thì sẽ có phần thừa
-}
 
 
 // Chương trình 3 : Tính tiền cho quán Karaoke.
 float tinhTienKaraoke()
 {   
-
     float gioBatDau ,gioKetThuc;
-   
-    
 //	Nhap vao gio bat dau
     do
     {
@@ -269,7 +253,6 @@ float tinhTienKaraoke()
 	    scanf("%f", &gioBatDau);
     } while (gioBatDau < 12 || gioBatDau > 23);
     
-	
 //	Nhap gio ket thuc
     do
     {
@@ -277,12 +260,7 @@ float tinhTienKaraoke()
 	    scanf("%f", &gioKetThuc);
     } while (gioKetThuc > 23 || gioKetThuc < 12 || gioKetThuc < gioBatDau);
     
-	
-    
-
     int tienGio, tienGiamGia, tienThanhToan;
-    
-
 	    if (gioBatDau >=14 && gioBatDau <=17)
 	{
 		if(gioKetThuc - gioBatDau <= 3)
@@ -290,8 +268,6 @@ float tinhTienKaraoke()
 			tienGio = (gioKetThuc - gioBatDau)* 150000;
 			tienGiamGia  = 0.1* tienGio;
 			tienThanhToan = tienGio - tienGiamGia;
-		
-			
 		}
 		else
 		{
@@ -302,7 +278,6 @@ float tinhTienKaraoke()
 	}
 	else
 	{
-		
 		if(gioKetThuc - gioBatDau <= 3)
 		{
 			tienGio = (gioKetThuc - gioBatDau)* 150000;
@@ -312,8 +287,7 @@ float tinhTienKaraoke()
 			{
 				tienGio =  (gioKetThuc - gioBatDau ) * 150000;
 				tienGiamGia = (gioKetThuc - gioBatDau ) * 150000 * 0.3;
-				tienThanhToan = (gioKetThuc - gioBatDau)* 150000 - tienGiamGia;
-				
+				tienThanhToan = (gioKetThuc - gioBatDau)* 150000 - tienGiamGia;			
 }
     }
     return tienThanhToan;
@@ -402,6 +376,27 @@ void tinhLaiVayNganHang()
     scanf("%d", &quayLai);
     } while (phuongThuc < 1 || phuongThuc > 3 || quayLai == 1);
 }
+
+//----------------------------************----------------------------------------//
+//----------------------------************----------------------------------------//
+// Hàm xử lý chức năng số 5
+void doiTien()
+{
+        int soTien;
+        printf("Nhập số tiền cần tính toán: ");
+        scanf("%d", &soTien);
+        int loaiTien[9]={500,200,100,50,20,10,5,2,1};
+	    int i, soto, phanthua;
+	    for(i=0;i<9;i++)
+	    {
+		soto = soTien / loaiTien[i];
+		printf("%4d to %2d dong\n",soto,loaiTien[i]);
+		soTien = soTien % loaiTien[i];
+		}
+}
+
+
+
 int main()
 {
    
@@ -410,8 +405,6 @@ int main()
     int tiepTuc = 1;
     // Xây dựng Menu 
  
-    
-    
     // Kiểm tra người dùng chọn chức năng
     do
     {
@@ -420,7 +413,7 @@ int main()
         printf("Chương trình 2 : Tìm ước số chung và bội số chung của 2 số\n"); // xong
         printf("Chương trình 3 : Tính tiền cho quán Karaoke\n"); // xong
         printf("Chương trình 4 : Tính tiền điện\n"); // xong
-        printf("Chương trình 5 : Đổi tiền\n"); //  
+        printf("Chương trình 5 : Đổi tiền\n"); //  xong
         printf("Chương trình 6 : Tính lãi vay ngân hàng, vay trả góp\n"); // xong
         printf("Chương trình 7 : Vay tiền mua xe\n");
         printf("Chương trình 8 : Sắp xếp thông tin sinh viên\n");
@@ -474,7 +467,18 @@ int main()
             break;
 
         case 5 : 
-            printf("Bạn đã chọn chương trình số 5 : Đổi tiền");
+           
+            printf("Bạn đã chọn chương trình số 5 : Đổi tiền\n");
+            int thoat5 = 0;
+            do 
+            {
+                doiTien();
+                thoat5 = dungNhieuLan();
+                if(thoat5 == -1)
+                {
+                    break;
+                }
+            }while (thoat5 == 0);    
             break;
 
         case 6 :  
