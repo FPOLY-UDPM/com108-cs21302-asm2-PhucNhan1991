@@ -2,7 +2,9 @@
 
 #include <stdio.h>
 #include <math.h>
-
+#include <string.h>
+#include <time.h>
+#include <stdlib.h>
 // Hàm cho phép người dùng nhập nhiều lần trong 1 chức năng
 int dungNhieuLan()
 {
@@ -233,7 +235,19 @@ float tinhTienDien()
          
 }
 
-
+void chucNang4()
+{
+      int thoat4 = 0;
+            do 
+            {
+                tinhTienDien();
+                thoat4 = dungNhieuLan();
+                if( thoat4 == -1)
+                {
+                    break;
+                }
+            }while ( thoat4 == 0); 
+}
 //----------------------------************----------------------------------------//
 //----------------------------************----------------------------------------//
 
@@ -258,10 +272,11 @@ float tinhTienKaraoke()
 	    scanf("%f", &gioKetThuc);
     } while (gioKetThuc > 23 || gioKetThuc < 12 || gioKetThuc < gioBatDau);
     
-    int tienGio, tienGiamGia, tienThanhToan;
+    double tienGio, tienGiamGia, tienThanhToan;
+    double thanhToan;
 	    if (gioBatDau >=14 && gioBatDau <=17)
-	{
-		if(gioKetThuc - gioBatDau <= 3)
+	    {
+		    if(gioKetThuc - gioBatDau <= 3)
 		{
 			tienGio = (gioKetThuc - gioBatDau)* 150000;
 			tienGiamGia  = 0.1* tienGio;
@@ -269,11 +284,12 @@ float tinhTienKaraoke()
 		}
 		else
 		{
-			tienGio =  (gioKetThuc - gioBatDau ) * 150000;
-			tienGiamGia = (gioKetThuc - gioBatDau ) * 150000 * 0.3 + 0.1* tienGio;
-			tienThanhToan = (gioKetThuc - gioBatDau)* 150000 - tienGiamGia;
-		}
+			tienGio =  (gioKetThuc - gioBatDau ) * 150000 ;
+			tienGiamGia = (gioKetThuc - gioBatDau - 3 ) * 150000 * 0.3 ;
+            thanhToan = tienGio - tienGiamGia ;
+			tienThanhToan = tienGio - tienGiamGia - 0.1 * thanhToan;
 	}
+        }
 	else
 	{
 		if(gioKetThuc - gioBatDau <= 3)
@@ -283,9 +299,9 @@ float tinhTienKaraoke()
 			}
 			else
 			{
-				tienGio =  (gioKetThuc - gioBatDau ) * 150000;
-				tienGiamGia = (gioKetThuc - gioBatDau ) * 150000 * 0.3;
-				tienThanhToan = (gioKetThuc - gioBatDau)* 150000 - tienGiamGia;			
+				tienGio =  (gioKetThuc - gioBatDau ) * 150000 ;
+			    tienGiamGia = (gioKetThuc - gioBatDau - 3 ) * 150000 * 0.3 ;
+                tienThanhToan = tienGio - tienGiamGia;		
 }
     }
     return tienThanhToan;
@@ -293,6 +309,21 @@ float tinhTienKaraoke()
 // __________________________************__________________________________
 // __________________________************__________________________________
 
+void chucNang3()
+{
+    int thoat3 = 0;
+            do
+            {
+               int tienThanhToan = tinhTienKaraoke();
+                printf("Số tiền thanh toán là %d VNĐ\n", tienThanhToan);
+                 thoat3 = dungNhieuLan();
+                if( thoat3 == -1)
+                {
+                    break;
+                }
+            } while (thoat3 == 0);
+            
+}
 void tinhLaiVayNganHang()
 {
     int phuongThuc, quayLai = 1;
@@ -412,6 +443,19 @@ void doiTien()
 		soTien = soTien % loaiTien[i];
 		}
 }
+void chucNang5()
+{
+       int thoat5 = 0;
+            do 
+            {
+                doiTien();
+                thoat5 = dungNhieuLan();
+                if(thoat5 == -1)
+                {
+                    break;
+                }
+            }while (thoat5 == 0);
+}
 
 //----------------------------************----------------------------------------//
 //----------------------------************----------------------------------------//
@@ -498,6 +542,290 @@ void vayMuaXe()
     printf("Tong tien phai tra (ca goc + lai): %.0lf VND\n",
            tongLai + tienVayThucTe);
 }
+void chucNang7()
+{
+    int thoat7 = 0;
+        do
+        {
+            vayMuaXe();
+            thoat7 == dungNhieuLan();
+            if(thoat7 == -1)
+            {
+                break;
+            }
+        } while (thoat7 == 0);
+}
+// Hàm xử lý chức năng số 8: SẮP XẾP THÔNG TIN SINH VIÊN
+void sapXepThongTinSinhVien(int n)
+{
+    struct thongTinSinhVien
+    {
+        char hoTenSinhVien[100];
+        float diemTrungBinh;
+        char hocLuc[10];
+    }sinhVien[n];
+    
+    for(int i = 0; i < n; i++)
+    {
+        // Nhập họ tên sinh viên
+        printf("Nhập họ tên sinh viên: ");
+        gets(sinhVien[i].hoTenSinhVien);
+
+        // Nhập điểm trung bình của sinh viên
+        do
+        {
+        printf("Nhập điểm trung bình của sinh viên: ");
+        scanf("%f", &sinhVien[i].diemTrungBinh);
+        getchar();
+        } while (sinhVien[i].diemTrungBinh < 0 || sinhVien[i].diemTrungBinh > 10);
+        
+        
+    }
+    //  Xác định học lực của sinh viên
+    for(int i = 0; i < n; i++)
+    {
+        if(sinhVien[i].diemTrungBinh >= 9)
+        {
+           strcpy(sinhVien[i].hocLuc, "Xuất sắc");
+        }
+        else if(sinhVien[i].diemTrungBinh < 9 && sinhVien[i].diemTrungBinh >=8 )
+        {
+            strcpy(sinhVien[i].hocLuc, "Giỏi");
+        }
+        else if(sinhVien[i].diemTrungBinh < 8 && sinhVien[i].diemTrungBinh >= 6.5 )
+        {
+           strcpy(sinhVien[i].hocLuc, "Khá");
+        }
+        else if (sinhVien[i].diemTrungBinh < 6.5 &&  sinhVien[i].diemTrungBinh >= 5)
+        {
+            strcpy(sinhVien[i].hocLuc, "Trung Bình");
+        }
+        else if( sinhVien[i].diemTrungBinh < 5)
+        {
+            strcpy(sinhVien[i].hocLuc, "Yếu");
+        }
+    }
+    // Sắp xếp theo thứ tụ điểm giảm dần
+    for(int i = 0; i < n; i++)
+    {
+        for( int j = i + 1; j < n; j++)
+        {
+            if(sinhVien[i].diemTrungBinh < sinhVien[j].diemTrungBinh)
+            {
+                struct thongTinSinhVien SvTam;
+                SvTam = sinhVien[i];
+                sinhVien[i] = sinhVien[j];
+                sinhVien[j] = SvTam;
+
+            }
+        }
+    }
+    // HIển thị thông tin trên
+    printf("********THÔNG TIN SINH VIÊN*********\n");
+    printf("%-5s | %-15s | %-25s | %-25s \n",  "Số thứ tự", "Tên Sinh Viên","Điểm trung bình", "Học lực");
+    for(int i = 0; i < n; i++)
+    {
+         printf("%-5d | %-15s | %-15.2f  | %-20s\n", i+1, sinhVien[i].hoTenSinhVien, sinhVien[i].diemTrungBinh, sinhVien[i].hocLuc);
+         printf("\n");
+    }
+
+}
+
+void chucNang8()
+{
+    int thoat8 =0;
+    do
+    {
+        // Khai báo số lượng sinh viên
+        int soSinhVien;
+        printf("Nhập số lượng sinh viên: ");
+        scanf("%d", &soSinhVien);
+        getchar();
+        sapXepThongTinSinhVien(soSinhVien);
+        thoat8 = dungNhieuLan();
+        if(thoat8 == -1)
+        {
+            break;
+        }
+    } while (thoat8 == 0);
+    
+    
+    
+}
+
+// Hàm xử lý chức năng thứ 10
+int uocChungLonNhat1(int a, int b)
+{
+    
+    int d,UCLN;
+    
+    while (b!=0)
+    {
+        d = a % b;
+        a = b;
+        b = d;
+    }
+    UCLN = a;
+    return UCLN;
+}
+void tong2PhanSo(int a, int b, int c, int d)
+{
+	int tuso, mauso;
+	tuso = a * d + c*b;
+	mauso = b * d;
+	int Uoc = uocChungLonNhat1(tuso, mauso);
+	int tuso1, mauso1;
+	tuso1 = tuso / Uoc;
+	mauso1 = mauso / Uoc;
+	printf("Tong 2 phan so %d/%d + %d/%d = %d/%d\n",a, b, c, d, tuso1, mauso1);
+}
+
+void tich2PhanSo(int a, int b, int c, int d)
+{
+	int tuso, mauso;
+	tuso = a *c;
+	mauso = b * d;
+	int Uoc = uocChungLonNhat1(tuso, mauso);
+	int tuso1, mauso1;
+	tuso1 = tuso / Uoc;
+	mauso1 = mauso / Uoc;
+	printf("Tich 2 phan so %d/%d x %d/%d = %d/%d\n",a, b, c, d, tuso1, mauso1);	
+	}
+void hieu2PhanSo(int a, int b, int c, int d)
+{
+	int tuso, mauso;
+	tuso = a * d - c*b;
+	mauso = b * d;
+	int Uoc = uocChungLonNhat1(tuso, mauso);
+	int tuso1, mauso1;
+	tuso1 = tuso / Uoc;
+	mauso1 = mauso / Uoc;
+	if(mauso1 < 0)
+	{
+		tuso1 = -tuso1;
+		mauso1 = - mauso1;
+		}
+	printf("Hieu 2 phan so %d/%d - %d/%d = %d/%d\n",a, b, c, d, tuso1, mauso1);
+	}
+
+void chia2PhanSo(int a, int b, int c, int d)
+{
+	int tuso, mauso;
+	tuso = a * d;
+	mauso = b * c;
+	int Uoc = uocChungLonNhat1(tuso, mauso);
+	int tuso1, mauso1;
+	tuso1 = tuso / Uoc;
+	mauso1 = mauso / Uoc;
+	printf("Thuong 2 phan so %d/%d / %d/%d = %d/%d\n",a, b, c, d, tuso1, mauso1);
+	}
+void chucNang10()
+{
+int thoat10 = 0;
+	do
+	{
+	int a, b, c, d;
+	// Phan so thu nhat
+	printf("Moi nguoi dung nhap tu so cua phan so thu nhat: ");
+	scanf("%d", &a);
+	do
+	{
+		
+	printf("Moi nguoi dung nhap mau so cua phan so thu nhat: ");
+	scanf("%d", &b);
+	} while (b == 0);
+	// Phan so thu hai
+	printf("Moi nguoi dung nhap tu so cua phan so thu hai: ");
+	scanf("%d", &c);
+	
+	do
+	{
+	printf("Moi nguoi dung nhap mau so cua phan so thu hai: ");
+	scanf("%d", &d);
+	} while(d == 0);
+	
+	tong2PhanSo(a, b, c, d);
+	hieu2PhanSo(a, b, c, d);
+	tich2PhanSo(a, b, c, d);
+	chia2PhanSo(a, b, c, d);
+	thoat10 = dungNhieuLan();
+	if(thoat10 == -1)
+	{
+		break;
+	}
+	}while (thoat10 == 0);	
+	}
+// Hàm xử lý chức năng số 9
+void soNgauNhien(int a[], int size, int min, int max)
+{
+	srand(time(NULL));
+	for(int i = 0; i < size; i++)
+	{
+		a[i] = rand() % (max - min + 1) + min;
+		}
+	}
+void inSoNgauNhien(int arr[], int size)
+{
+	printf("Các so trong day trung thuong la: \n");
+	for(int i = 0; i < size; i++)
+	{
+		printf("%d ", arr[i]);
+		}
+		printf("\n");
+	}
+
+ void chucNang9()
+{
+    int thoat9 = 0;
+    do
+    {
+        int soNhap[2];
+	// Nhập 2 số yêu thích
+	for(int i = 0; i < 2; i++)
+	{
+        do
+        {
+            printf("Nhap sô thu %d: ", i+1);
+		    scanf("%d", &soNhap[i]);
+        } while (soNhap[i] < 0 || soNhap[i] > 15);
+        
+		
+	}
+	
+	int random[15];
+	soNgauNhien(random, 2, 1, 15);
+	
+	inSoNgauNhien(random, 2);
+	int soLanGiongNhau = 0;
+	for(int i = 0; i < 2; i++)
+	{
+		for(int j = 0; j < 15; j++)
+		{
+			if(soNhap[i] == random[j])
+			{
+				soLanGiongNhau = soLanGiongNhau + 1;
+			}
+		}
+	}
+	if (soLanGiongNhau == 0)
+	{
+		printf("Chuc ban may man lan sau!!\n");
+	}
+	else if (soLanGiongNhau == 1)
+	{
+		printf("Ban da trung giai nhi!!\n");
+		}
+		else if (soLanGiongNhau >= 2)
+		{
+			printf("Ban da trung giai nhat!!\n");
+			}
+    thoat9 = dungNhieuLan();
+    if(thoat9 == -1)
+    {
+        break;
+    }        
+    } while (thoat9 == 0);      
+}   
 int main()
 {
    
@@ -538,50 +866,22 @@ int main()
         case 3 : 
         {   
             printf("Bạn đã chọn chương trình số 3 : Tính tiền cho quán Karaoke\n ");
-            int thoat3 = 0;
-            do
-            {
-               int tienThanhToan = tinhTienKaraoke();
-                printf("Số tiền thanh toán là %d VNĐ\n", tienThanhToan);
-                 thoat3 = dungNhieuLan();
-                if( thoat3 == -1)
-                {
-                    break;
-                }
-            } while (thoat3 == 0);
-            
+            chucNang3();
             
             break;
         }
         case 4 : 
+        {
             printf("Bạn đã chọn chương trình số 4 : Tính tiền điện\n");
-            int thoat4 = 0;
-            do 
-            {
-                tinhTienDien();
-                thoat4 = dungNhieuLan();
-                if( thoat4 == -1)
-                {
-                    break;
-                }
-            }while ( thoat4 == 0);    
+            chucNang4(); 
             break;
-
+        }
         case 5 : 
-           
+         {  
             printf("Bạn đã chọn chương trình số 5 : Đổi tiền\n");
-            int thoat5 = 0;
-            do 
-            {
-                doiTien();
-                thoat5 = dungNhieuLan();
-                if(thoat5 == -1)
-                {
-                    break;
-                }
-            }while (thoat5 == 0);    
+            chucNang5();
             break;
-
+         }   
         case 6 :  
             {
                 
@@ -591,37 +891,30 @@ int main()
             break;
 
         case 7 : 
-        printf("Bạn đã chọn chương trình số 7 : Vay tiền mua xe\n");
-        int thoat6 = 0;
-        do
         {
-            vayMuaXe();
-            thoat6 == dungNhieuLan();
-            if(thoat6 == -1)
-            {
-                break;
-            }
-        } while (thoat6 == 0);
-        
-        
+        printf("Bạn đã chọn chương trình số 7 : Vay tiền mua xe\n");
+        chucNang7();
         break;
-
+        }
         case 8 : 
-        printf("Bạn đã chọn chương trình số 8 : Sắp xếp thông tin sinh viên");
+        printf("Bạn đã chọn chương trình số 8 : Sắp xếp thông tin sinh viên\n");
+        chucNang8();
         break;
 
         case 9 : 
-        printf("Bạn đã chọn chương trình số 9 : Game FPOLY_LOTT");
+        printf("Bạn đã chọn chương trình số 9 : Game FPOLY_LOTT\n");
+        chucNang9();
         break;
 
         case 10 : 
-        printf("Bạn đã chọn chương trình số 10: Tính toán phân số");
+        printf("Bạn đã chọn chương trình số 10: Tính toán phân số\n");
+        chucNang10();
         break;
+
 
         default:
         printf("Bạn hãy chọn lại chương trình");
         
-
     }
     printf("\nNhập 1 để quay lại MeNu chương trình, 0 de thoat: ");
     scanf("%d", &tiepTuc);
@@ -630,11 +923,5 @@ int main()
         printf("Bạn đã thoát khỏi MENU");
     }
     } while ((luaChon <1 || luaChon > 10 ) || tiepTuc == 1);
-    
-    
-    
-   
-
-    
     return 0;
 }
