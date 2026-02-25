@@ -118,7 +118,6 @@ void chucNang1()
      
 //----------------------------************----------------------------------------//
 //----------------------------************----------------------------------------//
-
 // Các hàm cho chương trình số 2
 int uocChungLonNhat(float a, float b)
 {
@@ -190,10 +189,8 @@ void chucNang2()
             }
     }while (thoat == 0);   
 }
-
 //----------------------------************----------------------------------------//
 //----------------------------************----------------------------------------//
-
 // Hàm xử lý chức năng số 4
 float tinhTienDien()
 {
@@ -234,7 +231,6 @@ float tinhTienDien()
     return soTienPhaiTra;
          
 }
-
 void chucNang4()
 {
       int thoat4 = 0;
@@ -250,10 +246,6 @@ void chucNang4()
 }
 //----------------------------************----------------------------------------//
 //----------------------------************----------------------------------------//
-
-
-
-
 // Chương trình 3 : Tính tiền cho quán Karaoke.
 float tinhTienKaraoke()
 {   
@@ -306,16 +298,13 @@ float tinhTienKaraoke()
     }
     return tienThanhToan;
 }
-// __________________________************__________________________________
-// __________________________************__________________________________
-
 void chucNang3()
 {
     int thoat3 = 0;
             do
             {
                int tienThanhToan = tinhTienKaraoke();
-                printf("Số tiền thanh toán là %d VNĐ\n", tienThanhToan);
+                printf("Số tiền thanh toán là %lf VNĐ\n", tienThanhToan);
                  thoat3 = dungNhieuLan();
                 if( thoat3 == -1)
                 {
@@ -324,6 +313,9 @@ void chucNang3()
             } while (thoat3 == 0);
             
 }
+//----------------------------************----------------------------------------//
+//----------------------------************----------------------------------------//
+// Hàm xử lý chức năng số 6
 void tinhLaiVayNganHang()
 {
     int phuongThuc, quayLai = 1;
@@ -425,7 +417,6 @@ void tinhLaiVayNganHang()
     scanf("%d", &quayLai);
     } while (phuongThuc < 1 || phuongThuc > 3 || quayLai == 1);
 }
-
 //----------------------------************----------------------------------------//
 //----------------------------************----------------------------------------//
 // Hàm xử lý chức năng số 5
@@ -456,11 +447,9 @@ void chucNang5()
                 }
             }while (thoat5 == 0);
 }
-
 //----------------------------************----------------------------------------//
 //----------------------------************----------------------------------------//
 // Hàm xử lý chức năng số 7
-
 void vayMuaXe()
 {
     const int MAX_PERCENT = 80;
@@ -548,7 +537,7 @@ void chucNang7()
         do
         {
             vayMuaXe();
-            thoat7 == dungNhieuLan();
+            thoat7 = dungNhieuLan();
             if(thoat7 == -1)
             {
                 break;
@@ -630,7 +619,6 @@ void sapXepThongTinSinhVien(int n)
     }
 
 }
-
 void chucNang8()
 {
     int thoat8 =0;
@@ -652,7 +640,6 @@ void chucNang8()
     
     
 }
-
 // Hàm xử lý chức năng thứ 10
 int uocChungLonNhat1(int a, int b)
 {
@@ -679,7 +666,6 @@ void tong2PhanSo(int a, int b, int c, int d)
 	mauso1 = mauso / Uoc;
 	printf("Tong 2 phan so %d/%d + %d/%d = %d/%d\n",a, b, c, d, tuso1, mauso1);
 }
-
 void tich2PhanSo(int a, int b, int c, int d)
 {
 	int tuso, mauso;
@@ -707,7 +693,6 @@ void hieu2PhanSo(int a, int b, int c, int d)
 		}
 	printf("Hieu 2 phan so %d/%d - %d/%d = %d/%d\n",a, b, c, d, tuso1, mauso1);
 	}
-
 void chia2PhanSo(int a, int b, int c, int d)
 {
 	int tuso, mauso;
@@ -773,7 +758,6 @@ void inSoNgauNhien(int arr[], int size)
 		}
 		printf("\n");
 	}
-
  void chucNang9()
 {
     int thoat9 = 0;
@@ -792,14 +776,14 @@ void inSoNgauNhien(int arr[], int size)
 		
 	}
 	
-	int random[15];
+	int random[2];
 	soNgauNhien(random, 2, 1, 15);
 	
 	inSoNgauNhien(random, 2);
 	int soLanGiongNhau = 0;
 	for(int i = 0; i < 2; i++)
 	{
-		for(int j = 0; j < 15; j++)
+		for(int j = 0; j < 2; j++)
 		{
 			if(soNhap[i] == random[j])
 			{
@@ -826,6 +810,8 @@ void inSoNgauNhien(int arr[], int size)
     }        
     } while (thoat9 == 0);      
 }   
+
+// Hàm chính trong bài
 int main()
 {
    
