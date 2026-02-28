@@ -492,9 +492,13 @@ void vayMuaXe()
     }
 
     tienTraTruoc = giaXe - tienVayThucTe;
-
-    printf("Nhập số năm muốn vay: ");
-    scanf("%d", &YEARS);
+    do
+    {
+         printf("Nhập số năm muốn vay: ");
+        scanf("%d", &YEARS);
+    } while (YEARS > 24);
+    
+   
 
     soThang = YEARS *12;
     // ===== Thông tin vay =====
@@ -814,12 +818,10 @@ void inSoNgauNhien(int arr[], int size)
 // Hàm chính trong bài
 int main()
 {
-   
     // Khai báo biến lưu trữ giá trị của sự lựa chọn
     int luaChon;
     int tiepTuc = 1;
     // Xây dựng Menu 
- 
     // Kiểm tra người dùng chọn chức năng
     do
     {
@@ -836,7 +838,6 @@ int main()
         printf("Chương trình 10: Tính toán phân số\n");
         printf("Bạn hãy chọn chức năng ");
         scanf("%d", &luaChon);
-
         switch(luaChon)
     {
         case 1 : 
